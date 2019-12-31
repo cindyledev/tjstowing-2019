@@ -87,8 +87,7 @@ app.post("/send", (req, res) => {
     console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
 
     res.render("contact", {
-      msg:
-        "Your quote as been requested! Please wait for a driver to contact you"
+      msg: "Your request as been sent! Please wait for a driver to contact you"
     });
   });
 });
