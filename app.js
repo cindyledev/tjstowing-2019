@@ -7,7 +7,12 @@ const nodemailer = require("nodemailer");
 const app = express();
 
 // View engine setup
-app.engine("handlebars", exphbs());
+app.engine(
+  "handlebars",
+  exphbs({
+    defaultLayout: ""
+  })
+);
 app.set("view engine", "handlebars");
 
 // Static folder
@@ -48,7 +53,7 @@ app.post("/send", (req, res) => {
       <li>Destination: ${req.body.vehicleDestination}</li>
     </ul>
     <p>Comments: ${req.body.comments}</p>
-    <p>Sent customer copy: ${req.body.sendCopyToClient}></p>
+    <p>Sent customer copy: ${req.body.sendCopyToClient}</p>
   `;
 
   // create reusable transporter object using the default SMTP transport
@@ -59,27 +64,32 @@ app.post("/send", (req, res) => {
     auth: {
       user: "cottontilt@gmail.com",
       pass: "vietnam8"
+    },
+    tls: {
+      rejectUnauthorized: false
     }
   });
 
   // send mail with defined transport object
-  let info = transporter.sendMail({
-    from: '"Fred Foo 👻" <foo@example.com>', // sender address
+  let mailOptions = {
+    from: '"TJs Towing Quotes" <foo@example.com>', // sender address
     to: "le.cindy77@gmail.com", // list of receivers
-    subject: "Hello ✔", // Subject line
+    subject: "New Quote Request ✔", // Subject line
     text: "Hello world?", // plain text body
     html: output // html body
-  });
+  };
 
-  console.log("Message sent: %s", info.messageId);
-  // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      return console.log(error);
+    }
+    console.log("Message sent: %s", info.messageId);
+    console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
 
-  // Preview only available when sending through an Ethereal account
-  console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
-  // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
-
-  res.render("contact", {
-    msg: "Your quote as been requested! Please wait for a driver to contact you"
+    res.render("contact", {
+      msg:
+        "Your quote as been requested! Please wait for a driver to contact you"
+    });
   });
 });
 
