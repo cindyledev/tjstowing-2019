@@ -277,52 +277,56 @@
       <!-- Default form contact -->
       <form class="text-center border border-light p-5" action="send" method="POST">
         <p class="h4 mb-4">Request a Quote</p>
+        {{msg}}
 
         <!-- Name -->
-        <input type="text" id="ContactFormName" class="form-control mb-4" placeholder="Name" />
+        <input type="text" id="ContactFormName" class="form-control mb-4" name="contactName" placeholder="Name" />
 
         <!-- Email -->
-        <input type="email" id="ContactFormEmail" class="form-control mb-4" placeholder="E-mail" />
+        <input type="email" id="ContactFormEmail" class="form-control mb-4" name="contactEmail" placeholder="E-mail" />
 
         <!-- Phone -->
-        <input type="tel" id="ContactFormPhone" class="form-control mb-4" placeholder="Phone number" />
+        <input type="tel" id="ContactFormPhone" class="form-control mb-4" name="contactPhone"
+          placeholder="Phone number" />
 
         <!-- Urgency -->
         <div class="custom-control custom-switch mb-4">
-          <input type="checkbox" class="custom-control-input" id="customSwitches" />
-          <label class="custom-control-label" for="customSwitches">Urgent Service?</label>
+          <input type="checkbox" class="custom-control-input" id="urgencySwitch" name="urgency" />
+          <label class="custom-control-label" for="urgencySwitch">Urgent Service?</label>
         </div>
 
         <p class="h5 mb-4">Type of Service Needed</p>
         <div class="mb-4">
-          <!-- Default inline 1-->
+          <!-- Tow -->
           <div class="custom-control custom-radio custom-control-inline">
-            <input type="radio" class="custom-control-input" id="defaultInline1" name="inlineDefaultRadiosExample" />
-            <label class="custom-control-label" for="defaultInline1">Tow</label>
+            <input type="radio" class="custom-control-input" id="radioTow" name="typeOfService" value="Tow" />
+            <label class="custom-control-label" for="radioTow">Tow</label>
           </div>
 
-          <!-- Default inline 2-->
+          <!-- Lockout -->
           <div class="custom-control custom-radio custom-control-inline">
-            <input type="radio" class="custom-control-input" id="defaultInline2" name="inlineDefaultRadiosExample" />
-            <label class="custom-control-label" for="defaultInline2">Lockout</label>
+            <input type="radio" class="custom-control-input" id="radioLockout" name="typeOfService" value="Lockout" />
+            <label class="custom-control-label" for="radioLockout">Lockout</label>
           </div>
 
-          <!-- Default inline 3-->
+          <!-- Boost -->
           <div class="custom-control custom-radio custom-control-inline">
-            <input type="radio" class="custom-control-input" id="defaultInline3" name="inlineDefaultRadiosExample" />
-            <label class="custom-control-label" for="defaultInline3">Boost</label>
+            <input type="radio" class="custom-control-input" id="radioBoost" name="typeOfService" value="Boost" />
+            <label class="custom-control-label" for="radioBoost">Boost</label>
           </div>
 
-          <!-- Default inline 4-->
+          <!-- Tire Change -->
           <div class="custom-control custom-radio custom-control-inline">
-            <input type="radio" class="custom-control-input" id="defaultInline4" name="inlineDefaultRadiosExample" />
-            <label class="custom-control-label" for="defaultInline4">Tire Change</label>
+            <input type="radio" class="custom-control-input" id="radioTireChange" name="typeOfService"
+              value="TireChange" />
+            <label class="custom-control-label" for="radioTireChange">Tire Change</label>
           </div>
 
-          <!-- Default inline 5-->
+          <!-- Fuel Delivery -->
           <div class="custom-control custom-radio custom-control-inline">
-            <input type="radio" class="custom-control-input" id="defaultInline5" name="inlineDefaultRadiosExample" />
-            <label class="custom-control-label" for="defaultInline5">Fuel Delivery</label>
+            <input type="radio" class="custom-control-input" id="radioFuelDelivery" name="typeOfService"
+              value="FuelDelivery" />
+            <label class="custom-control-label" for="radioFuelDelivery">Fuel Delivery</label>
           </div>
         </div>
 
@@ -330,54 +334,56 @@
         <p class="h5 mb-4">Vehicle Information</p>
         <div class="form-row mb-4">
           <div class="col">
-            <select class="browser-default custom-select">
+            <select class="browser-default custom-select" name="vehicleType">
               <option value="" disabled>Choose option</option>
-              <option value="1" selected>Car</option>
-              <option value="2">Pickup Truck</option>
-              <option value="3">SUV</option>
-              <option value="4">Other</option>
+              <option value="Car" selected>Car</option>
+              <option value="Pickup Truck">Pickup Truck</option>
+              <option value="SUV">SUV</option>
+              <option value="Other">Other</option>
             </select>
           </div>
 
           <!-- Wheel -->
           <div class="col">
-            <select class="browser-default custom-select">
+            <select class="browser-default custom-select" name="wheelType">
               <option value="" disabled>Choose option</option>
-              <option value="1" selected>FWD</option>
-              <option value="2">AWD</option>
-              <option value="3">RWD</option>
-              <option value="4">Not Sure</option>
+              <option value="FWD" selected>FWD</option>
+              <option value="AWD">AWD</option>
+              <option value="RWD">RWD</option>
+              <option value="Not Sure">Not Sure</option>
             </select>
           </div>
         </div>
 
         <div class="form-row mb-4">
           <div class="col">
-            <input type="text" id="vehicleYear" class="form-control mb-4" placeholder="Year" />
+            <input type="text" id="vehicleYear" class="form-control mb-4" name="vehicleYear" placeholder="Year" />
           </div>
           <div class="col">
-            <input type="text" id="vehicleMake" class="form-control mb-4" placeholder="Make" />
+            <input type="text" id="vehicleMake" class="form-control mb-4" name="vehicleMake" placeholder="Make" />
           </div>
           <div class="col">
-            <input type="text" id="vehicleModel" class="form-control mb-4" placeholder="Model" />
+            <input type="text" id="vehicleModel" class="form-control mb-4" name="vehicleModel" placeholder="Model" />
           </div>
         </div>
 
         <!-- Vehicle Location -->
-        <input type="text" id="vehicleLocation" class="form-control mb-4" placeholder="Vehicle Location" />
+        <input type="text" id="vehicleLocation" class="form-control mb-4" name="vehicleLocation"
+          placeholder="Vehicle Location" />
 
         <!-- Vehicle Destination -->
-        <input type="text" id="vehicleDestination" class="form-control mb-4" placeholder="Vehicle Destination" />
+        <input type="text" id="vehicleDestination" class="form-control mb-4" name="vehicleDestination"
+          placeholder="Vehicle Destination" />
 
-        <!-- Message -->
+        <!-- Comments -->
         <div class="form-group">
-          <textarea class="form-control rounded-0" id="exampleFormControlTextarea2" rows="3"
-            placeholder="Message"></textarea>
+          <textarea class="form-control rounded-0" id="exampleFormControlTextarea2" rows="3" name="comments"
+            placeholder="Comments"></textarea>
         </div>
 
         <!-- Copy -->
         <div class="custom-control custom-checkbox mb-4">
-          <input type="checkbox" class="custom-control-input" id="defaultContactFormCopy" />
+          <input type="checkbox" class="custom-control-input" id="defaultContactFormCopy" name="sendCopyToClient" />
           <label class="custom-control-label" for="defaultContactFormCopy">Send me a copy of this message</label>
         </div>
 
