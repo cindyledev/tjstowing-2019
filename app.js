@@ -66,9 +66,6 @@ app.post("/send", (req, res) => {
     auth: {
       user: "cottontilt@gmail.com",
       pass: "vietnam8"
-    },
-    tls: {
-      rejectUnauthorized: false
     }
   });
 
