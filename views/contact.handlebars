@@ -28,9 +28,16 @@
   <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
     <div class="container">
       <a class="navbar-brand js-scroll-trigger" href="#page-top">
-        <img id="logoBrand" src="/img/logo/TJT_Main_OnDark_1_115x50.png" alt="TJ's Towing Logo">
+        <!-- Nav Logo for xs, sm, and md -->
+        <div class="d-block d-lg-none d-xl-none">
+          <img src="/img/logo/TJT_Simple_OnLight_115x50.png" alt="TJ's Towing Logo">
+        </div>
+        <!-- Nav Logo for lg and xl -->
+        <div class="d-none d-lg-block d-xl-block">
+          <img id="logoBrand" src="/img/logo/TJT_Main_OnDark_1_115x50.png" alt="TJ's Towing Logo">
+        </div>
       </a>
-      <ul class="navbar-nav ml-auto my-2 my-lg-0">
+      <ul class="navbar-nav mr-auto my-2 my-lg-0">
         <li class="nav-item">
           <a class="nav-link" href="tel:6477641991">(647)-764-1991</a>
         </li>
@@ -70,7 +77,14 @@
         <div class="col-lg-10 align-self-end">
           <div class="badge-primary mb-2">{{msg}}
           </div>
-          <img src="/img/logo/TJT_Main_OnDark_346x150.png" alt="TJ's Towing Brand">
+          <!-- Logo brand for xs, sm, and md -->
+          <div class="d-block d-lg-none d-xl-none">
+            <img src="/img/logo/TJT_Main_OnDark_346x150.png" alt="TJ's Towing Brand">
+          </div>
+          <!-- Logo brand for lg and xl -->
+          <div class="d-none d-lg-block d-xl-block">
+            <img src="/img/logo/TJT_Main_OnDark_693x300.png" alt="TJ's Towing Brand">
+          </div>
           <hr class="divider my-4">
         </div>
         <div class="col-lg-8 align-self-baseline">
