@@ -28,6 +28,10 @@ app.get("/", (req, res) => {
   res.render("main", { layout: false });
 });
 
+app.get("/location", (req, res) => {
+  res.render("location");
+});
+
 app.post("/send", (req, res) => {
   console.log(req.body);
 
