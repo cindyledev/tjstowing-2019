@@ -9730,3 +9730,11 @@ header.masthead h1 {
 #portfolio .container-fluid .portfolio-box:hover .portfolio-box-caption {
   opacity: 1;
 }
+
+#instafeed {
+  max-width:1080px;
+  width: 100%;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+}
