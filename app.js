@@ -1,5 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const multer = require("multer");
 const exphbs = require("express-handlebars");
 const path = require("path");
 const nodemailer = require("nodemailer");
@@ -23,6 +24,19 @@ app.use(express.static(path.join(__dirname, "/public")));
 // Body Parser Middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+//app.use(express.multipart());
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
 
 app.get("/", (req, res) => {
   res.render("main", { layout: false });
@@ -62,6 +76,19 @@ app.post("/send", (req, res) => {
     <p>Sent customer copy: ${req.body.sendCopyToClient}</p>
   `;
 
+  var auth = {
+    type: "oauth2",
+    user: "cottontilt@gmail.com",
+    clientId:
+      "923110423584-gtju3a9r4u5oo4eujbvq8je22kl51mgp.apps.googleusercontent.com",
+    clientSecret: "LMaLniYL76BZeiqRRaSvuF65",
+    refreshToken:
+      "1//04PO1EoK-uU1kCgYIARAAGAQSNwF-L9IrkjawVn2uN1PrZPpqy14oXCtWdEb4q8tYSZrzww3BB1CyxTRUuE0YCmv2wkKrG02gVj8",
+    accessToken:
+      "syRPQfW2pzWoAk23oEWROcq3LNtbsruBNKTaB1HYrBjYE7gOJS5VkeDO8YO_C7CAdPrPf1g"
+  };
+
+  /*
   // create reusable transporter object using the default SMTP transport
   let transporter = nodemailer.createTransport({
     host: "smtp.googlemail.com",
@@ -70,6 +97,15 @@ app.post("/send", (req, res) => {
     auth: {
       user: "cottontilt@gmail.com",
       pass: "vietnam8"
+    }
+  });
+*/
+
+  let transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: auth,
+    tls: {
+      rejectUnauthorized: false
     }
   });
 
