@@ -25,7 +25,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.get("/", (req, res) => {
-  res.render("contact", { layout: false });
+  res.render("main", { layout: false });
 });
 
 app.post("/send", (req, res) => {
@@ -85,7 +85,7 @@ app.post("/send", (req, res) => {
     console.log("Message sent: %s", info.messageId);
     console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
 
-    res.render("contact", {
+    res.render("main", {
       msg: "Your request as been sent! Please wait for a driver to contact you"
     });
   });
