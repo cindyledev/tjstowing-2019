@@ -43,8 +43,8 @@ app.get("/", (req, res) => {
   res.render("main", { layout: false });
 });
 
-app.get("/location", (req, res) => {
-  res.render("location");
+app.get("/services", (req, res) => {
+  res.render("services");
 });
 
 app.post("/send", (req, res) => {
