@@ -4,6 +4,8 @@ const multer = require("multer");
 const exphbs = require("express-handlebars");
 const path = require("path");
 const nodemailer = require("nodemailer");
+const { google } = require("googleapis");
+const OAuth2 = google.auth.OAuth2;
 const Instafeed = require("instafeed.js");
 
 const app = express();
@@ -77,38 +79,40 @@ app.post("/send", (req, res) => {
     <p>Sent customer copy: ${req.body.sendCopyToClient}</p>
   `;
 
-  var auth = {
-    type: "oauth2",
-    user: "cottontilt@gmail.com",
-    clientId:
-      "923110423584-gtju3a9r4u5oo4eujbvq8je22kl51mgp.apps.googleusercontent.com",
-    clientSecret: "LMaLniYL76BZeiqRRaSvuF65",
-    refreshToken:
-      "1//04PO1EoK-uU1kCgYIARAAGAQSNwF-L9IrkjawVn2uN1PrZPpqy14oXCtWdEb4q8tYSZrzww3BB1CyxTRUuE0YCmv2wkKrG02gVj8",
-    accessToken:
-      "syRPQfW2pzWoAk23oEWROcq3LNtbsruBNKTaB1HYrBjYE7gOJS5VkeDO8YO_C7CAdPrPf1g"
-  };
+  const oauth2Client = new google.auth.OAuth2(
+    "923110423584-gtju3a9r4u5oo4eujbvq8je22kl51mgp.apps.googleusercontent.com", // ClientID
+    "LMaLniYL76BZeiqRRaSvuF65", // Client Secret
+    "https://developers.google.com/oauthplayground" // Redirect URL
+  );
 
-  /*
+  oauth2Client.setCredentials({
+    refresh_token:
+      "1//04ZkB-FY3oh8cCgYIARAAGAQSNwF-L9Irztq5n_zdbsra5oAaadjtZXf1Hn_mN6ujswe44psky2vCIQb89TJy_i9gRZma1Bu16xk"
+  });
+
+  const accessToken = oauth2Client.getAccessToken();
+
   // create reusable transporter object using the default SMTP transport
-  let transporter = nodemailer.createTransport({
-    host: "smtp.googlemail.com",
-    port: 465,
-    secure: true, // true for 465, false for other ports
+  const smtpTransporter = nodemailer.createTransport({
+    service: "gmail",
     auth: {
+      type: "OAuth2",
       user: "cottontilt@gmail.com",
-      pass: "vietnam8",
-    tls: {
-      rejectUnauthorized: false
-    }
+      clientId:
+        "923110423584-gtju3a9r4u5oo4eujbvq8je22kl51mgp.apps.googleusercontent.com",
+      clientSecret: "LMaLniYL76BZeiqRRaSvuF65",
+      refreshToken:
+        "1//04ZkB-FY3oh8cCgYIARAAGAQSNwF-L9Irztq5n_zdbsra5oAaadjtZXf1Hn_mN6ujswe44psky2vCIQb89TJy_i9gRZma1Bu16xk",
+      accessToken: accessToken
     }
   });
-*/
 
+  /*
   let transporter = nodemailer.createTransport({
     service: "gmail",
     auth: auth
   });
+  */
 
   // send mail with defined transport object
   let mailOptions = {
@@ -119,16 +123,9 @@ app.post("/send", (req, res) => {
     html: output // html body
   };
 
-  transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-      return console.log(error);
-    }
-    console.log("Message sent: %s", info.messageId);
-    console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
-
-    res.render("main", {
-      msg: "Your request as been sent! Please wait for a driver to contact you"
-    });
+  smtpTransporter.sendMail(mailOptions, (error, response) => {
+    error ? console.log(error) : console.log(response);
+    smtpTransporter.close();
   });
 });
 
