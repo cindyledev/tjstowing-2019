@@ -5,7 +5,6 @@ const exphbs = require("express-handlebars");
 const path = require("path");
 const nodemailer = require("nodemailer");
 const { google } = require("googleapis");
-const OAuth2 = google.auth.OAuth2;
 const Instafeed = require("instafeed.js");
 
 const app = express();
@@ -87,14 +86,16 @@ app.post("/send", (req, res) => {
 
   oauth2Client.setCredentials({
     refresh_token:
-      "1//04ZkB-FY3oh8cCgYIARAAGAQSNwF-L9Irztq5n_zdbsra5oAaadjtZXf1Hn_mN6ujswe44psky2vCIQb89TJy_i9gRZma1Bu16xk"
+      "1//04pCkNRBR8HoQCgYIARAAGAQSNwF-L9IrRA1HS45q3HVLtUgbuNtELGFRQPQk22qW1oauSqWWZ2-kKbvR2e2ssiq-9sMDDUKkrTI"
   });
 
   const accessToken = oauth2Client.getAccessToken();
 
   // create reusable transporter object using the default SMTP transport
-  const smtpTransporter = nodemailer.createTransport({
-    service: "gmail",
+  let transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 465,
+    secure: true,
     auth: {
       type: "OAuth2",
       user: "cottontilt@gmail.com",
@@ -102,8 +103,10 @@ app.post("/send", (req, res) => {
         "923110423584-gtju3a9r4u5oo4eujbvq8je22kl51mgp.apps.googleusercontent.com",
       clientSecret: "LMaLniYL76BZeiqRRaSvuF65",
       refreshToken:
-        "1//04ZkB-FY3oh8cCgYIARAAGAQSNwF-L9Irztq5n_zdbsra5oAaadjtZXf1Hn_mN6ujswe44psky2vCIQb89TJy_i9gRZma1Bu16xk",
-      accessToken: accessToken
+        "1//04pCkNRBR8HoQCgYIARAAGAQSNwF-L9IrRA1HS45q3HVLtUgbuNtELGFRQPQk22qW1oauSqWWZ2-kKbvR2e2ssiq-9sMDDUKkrTI",
+      accessToken:
+        "ya29.Il-4B0S0Em7NQrqXyRWGAhiUeut-eMffgtledk1SdId4W_TH2PCPC7ghtMwP0iwjKBwgSjFpMonwhhO3D-w4ow3rAcOnnIIUmh2_7lJZEB1sB3cECQ4a1-MMG1r83tVlOQ",
+      expires: 1484314697598
     }
   });
 
@@ -123,9 +126,9 @@ app.post("/send", (req, res) => {
     html: output // html body
   };
 
-  smtpTransporter.sendMail(mailOptions, (error, response) => {
+  transporter.sendMail(mailOptions, (error, response) => {
     error ? console.log(error) : console.log(response);
-    smtpTransporter.close();
+    transporter.close();
   });
 });
 
