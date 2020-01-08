@@ -48,6 +48,10 @@ app.get("/services", (req, res) => {
   res.render("services");
 });
 
+app.get("/about", (req, res) => {
+  res.render("about");
+});
+
 app.post("/send", (req, res) => {
   console.log(req.body);
 
