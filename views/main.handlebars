@@ -96,13 +96,9 @@
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#form">Get a Quote</a>
           </li>
-          <!--
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#portfolio"
-                >Portfolio</a
-              >
-            </li>
-          -->
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="about#about">About Us</a>
+          </li>
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#location">Location</a>
           </li>
@@ -224,8 +220,10 @@
 
   <!-- Form -->
   <section class="page-section bg-dark text-white" id="form">
+    <!-- 
+      <div class="elfsight-app-3eaa6918-14e0-4456-a57a-6147f05684e9"></div>
+    -->
     <div class="container text-center">
-      <!-- Default form contact -->
       <form class="text-center border border-light p-5" action="send" method="POST">
         <p class="h4 mb-4">Request a Quote</p>
 
@@ -239,7 +237,7 @@
         <input type="tel" id="ContactFormPhone" class="form-control mb-4" name="contactPhone"
           placeholder="Phone number" />
 
-        <!-- Urgency -->
+        <!-- Urgency       -->
         <div class="custom-control custom-switch mb-4">
           <input type="checkbox" class="custom-control-input" id="urgencySwitch" name="urgency" />
           <label class="custom-control-label" for="urgencySwitch">Urgent Service?</label>
@@ -247,6 +245,7 @@
 
         <p class="h5 mb-4">Type of Service Needed</p>
         <div class="mb-4">
+
           <!-- Tow -->
           <div class="custom-control custom-radio custom-control-inline">
             <input type="radio" class="custom-control-input" id="radioTow" name="typeOfService" value="Tow" />
@@ -337,10 +336,10 @@
           <label class="custom-control-label" for="defaultContactFormCopy">Send me a copy of this message</label>
         </div>
 
-        <!-- Send button -->
+        <!-- Send button     -->
         <button type="submit" class="btn btn-primary btn-xl">Send</button>
       </form>
-      <!-- Default form contact -->
+
     </div>
   </section>
 
@@ -362,99 +361,6 @@
       </small>
     </div>
   </section>
-
-  <!-- Portfolio Section 
-  <section id="portfolio">
-    <div class="container-fluid p-0">
-      <div class="row no-gutters">
-        <div class="col-lg-4 col-sm-6">
-          <a class="portfolio-box" href="img/portfolio/fullsize/1.jpg">
-            <img class="img-fluid" src="img/portfolio/thumbnails/1.jpg" alt="" />
-            <div class="portfolio-box-caption">
-              <div class="project-category text-white-50">
-                Category
-              </div>
-              <div class="project-name">
-                Project Name
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-lg-4 col-sm-6">
-          <a class="portfolio-box" href="img/portfolio/fullsize/2.jpg">
-            <img class="img-fluid" src="img/portfolio/thumbnails/2.jpg" alt="" />
-            <div class="portfolio-box-caption">
-              <div class="project-category text-white-50">
-                Category
-              </div>
-              <div class="project-name">
-                Project Name
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-lg-4 col-sm-6">
-          <a class="portfolio-box" href="img/portfolio/fullsize/3.jpg">
-            <img class="img-fluid" src="img/portfolio/thumbnails/3.jpg" alt="" />
-            <div class="portfolio-box-caption">
-              <div class="project-category text-white-50">
-                Category
-              </div>
-              <div class="project-name">
-                Project Name
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-lg-4 col-sm-6">
-          <a class="portfolio-box" href="img/portfolio/fullsize/4.jpg">
-            <img class="img-fluid" src="img/portfolio/thumbnails/4.jpg" alt="" />
-            <div class="portfolio-box-caption">
-              <div class="project-category text-white-50">
-                Category
-              </div>
-              <div class="project-name">
-                Project Name
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-lg-4 col-sm-6">
-          <a class="portfolio-box" href="img/portfolio/fullsize/5.jpg">
-            <img class="img-fluid" src="img/portfolio/thumbnails/5.jpg" alt="" />
-            <div class="portfolio-box-caption">
-              <div class="project-category text-white-50">
-                Category
-              </div>
-              <div class="project-name">
-                Project Name
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-lg-4 col-sm-6">
-          <a class="portfolio-box" href="img/portfolio/fullsize/6.jpg">
-            <img class="img-fluid" src="img/portfolio/thumbnails/6.jpg" alt="" />
-            <div class="portfolio-box-caption p-3">
-              <div class="project-category text-white-50">
-                Category
-              </div>
-              <div class="project-name">
-                Project Name
-              </div>
-            </div>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-  -->
-
-  <!-- Instagram Feed
-  <section class="page-section">
-    <div id="instafeed"></div>
-  </section>
-  -->
 
   <!-- Contact Section -->
   <section class="page-section" id="contact">
@@ -501,8 +407,7 @@
   <footer class="bg-light py-5">
     <div class="container">
       <div class="small text-center text-muted">
-        Copyright &copy; 2020 TJ's Towing • Developed by
-        <a href="https://linkedin.com/in/cindyledev">CL</a>
+        Copyright &copy; 2020 TJ's Towing</a>
       </div>
     </div>
   </footer>
@@ -518,6 +423,9 @@
   <!-- Custom scripts for this template -->
   <script src="/js/creative.js"></script>
   <script src="/js/instafeed.js"></script>
+
+  <!-- Form script -->
+  <script src="https://apps.elfsight.com/p/platform.js" defer></script>
 </body>
 
 </html>
